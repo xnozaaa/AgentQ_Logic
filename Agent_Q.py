@@ -1,8 +1,12 @@
 import random
 import sys
 from time import sleep
+
+#ALL PRINT STATEMENTS ARE SAVED IN TO VARIABLES DUE TO THE SPECIAL PRINT EFFECT 
 incoming ="INCOMING....MESSAGE....AGENT Q...."
 ruthere ="ARE YOU THERE?...Y/N"
+
+#SCENRIOS PRINT STATEMENT
 mission ="""
 YOU HAVE BEEN TASKED WITH A TOP SECRET MISSION TO FOIL THE PURCHASE OF SOME BLACK MARKET RUBBER CHICKENS
 
@@ -26,23 +30,35 @@ GOODLUCK AGENT Q
 
 """
 
-wdplan = """
+#PRINT STATEMNET FOR WHEN THE PLAN IS ON AND USER CHOICE IS ON
+CorrectDealOn = """
 WELL DONE AGENT Q YOU HAVE MANAGED TO IDENTIFY WHEN THE DEAL WAS TAKING PLACE AND FOILED THEIR PLANS
 
 TILL NEXT TIME....
 
 """
 
-gameover = """
-AGENT Q... YOU HAVE FAILED THE MISSION, BLOWN OUR COVER AND COMPROMISED ALL OF OUR AGENTS
+#PRINT STATEMNET FOR WHEN THE PLAN IS ON AND USER CHOICE IS OFF
+IncorrectDealOn = """
+AGENT Q.... YOU HAVE FAILED THE MISSION, FAILED TO IDENTIFY THAT THE DEAL WAS ON AND ALLOWED THE RUBBER CHICKENS TO BE SOLD AND OUT OF YOUR SIGHT.
+RETURN TO HQ TO BE DEBREIFED...
+"""
+
+##PRINT STATEMNET FOR WHEN THE PLAN IS OFF AND USER CHOICE IS ON
+IncorrectDealOff = """
+AGENT Q... YOU HAVE FAILED THE MISSION, THE DEAL WAS NOT ON, YOU HAVE BLOWN OUR COVER AND COMPROMISED ALL OF OUR AGENTS
 RETURN YOUR EQUIPMENT AND AWAIT DEBREIFING...
 """
 
-
-wdnoplan = """
-AGENT Q WE HAVE NOT MANAGED TO FOIL THEIR PLANS BUT AT LEAST WE DID NOT BLOW OUR COVER
+#PRINT STATEMNET FOR WHEN THE PLAN IS OFF AND USER CHOICE IS OFF
+CorrectDealOff = """
+WELLDONE AGENT Q YOU HAVE IDENTIFIED THAT THE DEAL WAS NOT ON, WE HAVE NOT MANAGED TO FOIL THEIR PLANS BUT AT LEAST WE DID NOT BLOW OUR COVER
 
 """
+
+SelfDestruct="THIS MESSAGE WILL SELF-DESTRUCT IN 5..4..3..2..1..."
+
+
 
 Andy = ["hasn't bought an ice cream", "bought an ice cream"]
 Beth = ["not drinking anything", "drinking a milkshake"]
@@ -50,11 +66,7 @@ Chris = ["nowhere near an umbrella", "sitting under an umbrella"]
 Davina = ["wearing reading glasses", "wearing sunglasses"]
 
 
-
-
-
-destruction="THIS MESSAGE WILL SELF-DESTRUCT IN 5..4..3..2..1..."
-
+#WILL PRINT THE CONTENTS OF VARIABLES CHARACTER BY CHARACTER
 for a in incoming:
     print(a, end="", flush=True); sleep(0.01)
 
@@ -83,33 +95,58 @@ if response == "Y":
 
     deal = input("Agent Q is the deal on? Y/N \n").upper()
 
+    #IF STATEMNET FOR WHEN THE PLAN IS ON AND USER CHOICE IS ON
+
     if deal == "Y" and andychoice == 0 and chrischoice == 1:
-        for a in welldone:
+        for a in CorrectDealOn:
             print(a, end="", flush=True); sleep(0.01)
             
     elif deal == "Y" and bethchoice == 0 and chrischoice == 1:
-        for a in welldone:
+        for a in CorrectDealOn:
             print(a, end="", flush=True); sleep(0.01)
 
     elif deal == "Y" and chrischoice == 0 and davinachoice == 0:
-        for a in welldone:
+        for a in CorrectDealOn:
             print(a, end="", flush=True); sleep(0.01)
 
     elif deal == "Y" and andychoice == 1 and bethchoice == 1 and chrischoice == 0:
-        for a in welldone:
+        for a in CorrectDealOn:
+            print(a, end="", flush=True); sleep(0.01)
+
+    #IF STATEMNET FOR WHEN THE PLAN IS ON AND USER CHOICE IS OFF
+
+    elif deal == "N" and andychoice == 0 and chrischoice == 1:
+        for a in IncorrectDealOn:
             print(a, end="", flush=True); sleep(0.01)
             
+    elif deal == "N" and bethchoice == 0 and chrischoice == 1:
+        for a in IncorrectDealOn:
+            print(a, end="", flush=True); sleep(0.01)
+
+    elif deal == "N" and chrischoice == 0 and davinachoice == 0:
+        for a in IncorrectDealOn:
+            print(a, end="", flush=True); sleep(0.01)
+
+    elif deal == "N" and andychoice == 1 and bethchoice == 1 and chrischoice == 0:
+        for a in IncorrectDealOn:
+            print(a, end="", flush=True); sleep(0.01)
+
+    #IF STATEMNET FOR WHEN THE PLAN IS OFF AND USER CHOICE IS OFF
+
+    elif deal == "N":
+        for a in CorrectDealOff:
+            print(a, end="", flush=True); sleep(0.01)
+
+    #IF STATEMNET FOR WHEN THE PLAN IS OFF AND USER CHOICE IS ON
+            
     elif deal == "Y":
-        for a in gameover:
+        for a in IncorrectDealOff:
             print(a, end="", flush=True); sleep(0.01)
-    else:
-        for a in ohno:
-            print(a, end="", flush=True); sleep(0.01)
-        for a in destruction:
-            print(a, end="", flush=True); sleep(0.01)
+
+
     
 else:
-    for a in destruction:
+    for a in SelfDestruct:
         print(a, end="", flush=True); sleep(0.1)
 
 
